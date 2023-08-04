@@ -309,74 +309,228 @@
 // console.log([...arr1, ...arr2, ...arr3]);
 
 //  Управление элементами массива
-const obj2 = {
-    uuu: 111,
-    bbb: 222,
-    ccc: undefined,
-    ggg: undefined,
-    login: {
-        username: 'test',
-        password: 'testpassword',
-    },
-    user: {
-        id: 12345,
-        firstname: 'firstname',
-        lastname: 'lastname',
-    },
-    message: {
-        msgId: 12345,
-        msgText: 'новый текст',
-        msgEdit: undefined,
-        msgDate: Date.now(),
-    },
-};
-const obj = {
-    uuu: 111,
-    bbb: 222,
-    ccc: undefined,
-    ggg: undefined,
-    username: 'test',
-    password: 'testpassword',
-    id: 12345,
-    firstname: 'firstname',
-    lastname: 'lastname',
-    msgId: 12345,
-    msgText: 'новый текст',
-    msgEdit: undefined,
-    msgDate: Date.now(),
-};
-class Test {
-    constructor(obj) {
-        const user = ['id', 'firstname', 'lastname'];
-        const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
-        const login = ['username', 'password'];
-        for (let key in obj) {
-            if (!!obj[key]) {
-                switch (true) {
-                    case user.includes(key):
-                        this['user'] ??= {};
-                        this.user[key] = obj[key];
-                        break;
-                    case message.includes(key):
-                        this['message'] ??= {};
-                        this.message[key] = obj[key];
-                        break;
-                    case login.includes(key):
-                        this['login'] ??= {};
-                        this.login[key] = obj[key];
-                        break;
-                    default:
-                        this[key] = obj[key];
-                }
-            }
-        }
-    }
+// const obj2 = {
+//     uuu: 111,
+//     bbb: 222,
+//     ccc: undefined,
+//     ggg: undefined,
+//     login: {
+//         username: 'test',
+//         password: 'testpassword',
+//     },
+//     user: {
+//         id: 12345,
+//         firstname: 'firstname',
+//         lastname: 'lastname',
+//     },
+//     message: {
+//         msgId: 12345,
+//         msgText: 'новый текст',
+//         msgEdit: undefined,
+//         msgDate: Date.now(),
+//     },
+// };
+// const obj = {
+//     uuu: 111,
+//     bbb: 222,
+//     ccc: undefined,
+//     ggg: undefined,
+//     username: 'test',
+//     password: 'testpassword',
+//     id: 12345,
+//     firstname: 'firstname',
+//     lastname: 'lastname',
+//     msgId: 12345,
+//     msgText: 'новый текст',
+//     msgEdit: undefined,
+//     msgDate: Date.now(),
+// };
+// class Test {
+//     constructor(obj) {
+//         const user = ['id', 'firstname', 'lastname'];
+//         const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
+//         const login = ['username', 'password'];
+//         for (let key in obj) {
+//             if (!!obj[key]) {
+//                 switch (true) {
+//                     case user.includes(key):
+//                         this['user'] ??= {};
+//                         this.user[key] = obj[key];
+//                         break;
+//                     case message.includes(key):
+//                         this['message'] ??= {};
+//                         this.message[key] = obj[key];
+//                         break;
+//                     case login.includes(key):
+//                         this['login'] ??= {};
+//                         this.login[key] = obj[key];
+//                         break;
+//                     default:
+//                         this[key] = obj[key];
+//                 }
+//             }
+//         }
+//     }
 
-    get() {
-        return this;
-    }
+//     get() {
+//         return this;
+//     }
+// }
+
+// const testClass = new Test(obj);
+// console.log(obj);
+// console.log(testClass.get());
+
+// //  Поиск элементов
+// const roles = ['user', 'admin', 'manager', 'admin'];
+
+// const elIndex = roles.indexOf('admin');
+// console.log(elIndex);
+// const elIndex2 = roles.indexOf('superuser');
+// console.log(elIndex2);
+
+// if (roles.indexOf('superuser') >= 0) {
+//     console.log('Доступ есть');
+// }
+
+// console.log(roles.includes('admin'));
+// console.log(roles.includes('superadmin'));
+
+// if (roles.includes('admin')) {
+//     console.log('Доступ есть');
+// }
+
+// //  Slice, splice, concat, reverse
+// const roles = ['user', 'admin', 'manager', 'superuser'];
+// const res = roles.slice(2);
+// console.log(roles);
+// console.log(res);
+
+// const res2 = roles.slice(2, 3);
+// console.log(roles);
+// console.log(res2);
+
+// const res3 = roles.slice(-1);
+// console.log(roles);
+// console.log(res3);
+
+// const res4 = roles.slice(1, -2);
+// console.log(roles);
+// console.log(res4);
+
+// const res5 = roles.splice(2);
+// console.log(roles);
+// console.log(res5);
+
+// const res6 = roles.splice(2, 2);
+// console.log(res6);
+// console.log(roles);
+
+// const res7 = roles.splice(-1);
+// console.log(res7);
+// console.log(roles);
+
+// const res8 = roles.reverse();
+// console.log(res8);
+// console.log(roles);
+
+// const newRoles = ['sysadmin', 'developer'];
+// const res9 = roles.concat(newRoles);
+// console.log(res9);
+
+// //  Из строки в массив и обратно
+// const roles = ['user', 'admin', 'manager', 'superuser'];
+
+// const url = 'auth/user/login';
+// const res = url.split('/');
+// console.log(res);
+
+// console.log(res.join('-'));
+
+// //  Упражнение - Обновление списка задач
+// const tasks = ['Задача 1'];
+
+// function Add(task) {
+//     return tasks.push(task);
+// }
+// function Remove(task) {
+//     const elIndex = tasks.indexOf(task);
+//     if (elIndex < 0) {
+//         return console.log(`${task} не найдена`);
+//     }
+//     return tasks.splice(elIndex, 1);
+// }
+
+// function Prioritize(task) {
+//     const result = Remove(task);
+//     if (!result) {
+//         return;
+//     }
+//     return tasks.unshift(task);
+// }
+
+// Add('Задача 2');
+// Add('Задача 3');
+// Add('Задача 4');
+// Add('Задача 5');
+// console.log(tasks);
+
+// Remove('Задача 3');
+// console.log(tasks);
+
+// Prioritize('Задача 4');
+// console.log(tasks);
+
+//  Принцип DRY
+// //  Деструктуризация
+// const userData = ['Антон', 18, 'Москва'];
+
+// function getData() {
+//     return ['Антон', 18, 'Москва'];
+// }
+
+// const [userName, age, city] = userData;
+// console.log(userName, age, city);
+
+// //  Rest Оператор
+// const data = [1, 2, 3, 4, 5, 6];
+// const [one, two, ...others] = data;
+// console.log(one, two, others);
+
+//  Упражнение - функция разбора URL
+const url = `https://purpleschool.ru/course/javascript`;
+
+function getUrlParts(url) {
+    const [protocol, others] = url.split('://');
+    const [domain, ...pathURL] = others.split('/');
+
+    console.log(`protocol: ${protocol}`);
+    console.log(`domain: ${domain}`);
+    console.log(`pathURL: /${pathURL.join('/')}`);
 }
 
-const testClass = new Test(obj);
-console.log(obj);
-console.log(testClass.get());
+getUrlParts(url);
+
+let array = [1, 2, 3, 4];
+const res = array.push(5);
+console.log(res);
+
+//  Домашнее задание - Массивы
+function crypto(password) {
+    const strArray = password.split('');
+    const crypt1 = strArray.splice(4);
+    strArray.reverse();
+    crypt1.reverse();
+    for (let i = 1; i < crypt1.length; i++) {
+        crypt1.push(crypt1[i]);
+        crypt1.splice(i, 1);
+    }
+
+    return strArray.concat(crypt1).join('');
+}
+function check(crypto, password) {
+    return password === crypto(password);
+}
+
+const str1 = crypto('password');
+const res = check(str1, 'password');
