@@ -37,8 +37,8 @@ function canDelete(array, fn) {
 
 function filterPattern(array) {
     const [day, month, year] = array;
-    const leapYear = year % 4 === 0 || (year % 100 === 0 && year % 400 === 0);
-    const daysFromMonth = [
+    const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+    const daysPerMonth = [
         31,
         leapYear ? 29 : 28,
         31,
@@ -55,7 +55,7 @@ function filterPattern(array) {
 
     return (
         day > 0 &&
-        day <= daysFromMonth[month - 1] &&
+        day <= daysPerMonth[month - 1] &&
         month > 0 &&
         month < 13 &&
         year > 1900
