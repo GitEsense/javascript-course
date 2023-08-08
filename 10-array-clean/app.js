@@ -12,14 +12,15 @@ const arr = [
 
 //  Функция фильтрации
 function filterArray(array, fn) {
-    for (let i = 0; i < array.length; i++) {
-        let isDelete = fn(array[i]);
+    const resultArray = Array.from(array);
+    for (let i = 0; i < resultArray.length; i++) {
+        let isDelete = fn(resultArray[i]);
         if (isDelete) {
-            array.splice(i, 1);
+            resultArray.splice(i, 1);
             i--;
         }
     }
-    return array;
+    return resultArray;
 }
 
 // Функция условия удаления (вынесено отдельно для удобства чтения)
@@ -33,5 +34,5 @@ function canDelete(num) {
     );
 }
 
-let res = filterArray(arr, canDelete);
-console.log(res);
+const result = filterArray(arr, canDelete);
+console.log(result);
