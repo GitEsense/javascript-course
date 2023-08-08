@@ -12,6 +12,8 @@ const stringArray = [
     '11/12/2023',
     '00/13/2022',
     '41/12/2023',
+    '02/29/2023',
+    '02/29/2024',
     'tt/11/20ts',
     '012/011/20ts',
 ];
@@ -35,7 +37,29 @@ function canDelete(array, fn) {
 
 function filterPattern(array) {
     const [day, month, year] = array;
-    return day > 0 && day < 32 && month > 0 && +month < 13 && +year;
+    const leapYear = year % 4 === 0 || (year % 100 === 0 && year % 400 === 0);
+    const daysFromMonth = [
+        31,
+        leapYear ? 29 : 28,
+        31,
+        30,
+        31,
+        30,
+        31,
+        31,
+        30,
+        31,
+        30,
+        31,
+    ];
+
+    return (
+        day > 0 &&
+        day <= daysFromMonth[month - 1] &&
+        month > 0 &&
+        month < 13 &&
+        year > 1900
+    );
 }
 
 console.log(canDelete(stringArray, filterPattern));
