@@ -1,7 +1,7 @@
 //  Домашнее задание - Массивы
 function crypto(password) {
     const strArray = password.split('');
-    const crypt1 = strArray.splice(4);
+    const crypt1 = strArray.splice(strArray.length / 2);
     strArray.reverse();
     crypt1.reverse();
     for (let i = 1; i < crypt1.length; i++) {
