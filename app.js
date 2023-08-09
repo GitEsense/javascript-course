@@ -211,7 +211,7 @@
 
 // console.log(poft(6));
 
-// //  Упраждение - упрощение функции
+// //  Упражнение - упрощение функции
 // function toPower(num, power) {
 //     const res = num ** power;
 //     return res;
@@ -497,40 +497,427 @@
 // const [one, two, ...others] = data;
 // console.log(one, two, others);
 
-//  Упражнение - функция разбора URL
-const url = `https://purpleschool.ru/course/javascript`;
+// //  Упражнение - функция разбора URL
+// const url = `https://purpleschool.ru/course/javascript`;
 
-function getUrlParts(url) {
-    const [protocol, others] = url.split('://');
-    const [domain, ...pathURL] = others.split('/');
+// function getUrlParts(url) {
+//     const [protocol, others] = url.split('://');
+//     const [domain, ...pathURL] = others.split('/');
 
-    console.log(`protocol: ${protocol}`);
-    console.log(`domain: ${domain}`);
-    console.log(`pathURL: /${pathURL.join('/')}`);
-}
+//     console.log(`protocol: ${protocol}`);
+//     console.log(`domain: ${domain}`);
+//     console.log(`pathURL: /${pathURL.join('/')}`);
+// }
 
-getUrlParts(url);
+// getUrlParts(url);
 
-let array = [1, 2, 3, 4];
-const res = array.push(5);
-console.log(res);
+// //  Циклы for
+// for (let i = 0, p = 200; i < 10; i += 2, p -= 10) {
+//     console.log(i + p);
+// }
 
-//  Домашнее задание - Массивы
-function crypto(password) {
-    const strArray = password.split('');
-    const crypt1 = strArray.splice(4);
-    strArray.reverse();
-    crypt1.reverse();
-    for (let i = 1; i < crypt1.length; i++) {
-        crypt1.push(crypt1[i]);
-        crypt1.splice(i, 1);
-    }
+// //  break и continue
+// const tasks = [
+//     'Задача 1',
+//     'Задача 2',
+//     'Задача 3',
+//     'Задача 4',
+//     'Задача 5',
+//     'Задача 6',
+// ];
 
-    return strArray.concat(crypt1).join('');
-}
-function check(crypto, password) {
-    return password === crypto(password);
-}
+// for (let i = 0; i < tasks.length; i++) {
+//     if (i % 3 === 0) {
+//         console.log('Остаток :', i % 3);
+//         console.log('Стоянка :', tasks[i]);
+//         continue;
+//     }
+//     console.log(tasks[i]);
+// }
+// console.log('-----------------------------');
+// for (let i = 0; i < tasks.length; i++) {
+//     if (tasks[i] === 'Задача 2') {
+//         break;
+//     }
+//     console.log(tasks[i]);
+// }
 
-const str1 = crypto('password');
-const res = check(str1, 'password');
+// //  Циклы for of и for in
+// const arr = [1, 4, 8, 7, '-----------------------'];
+
+// for (let i = 0; i < arr.length; i++) {
+//     console.log(arr[i]);
+// }
+
+// for (const element of arr) {
+//     console.log(element);
+// }
+
+// for (let index in arr) {
+//     console.log(arr[index]);
+// }
+
+// //  Упражнение - расчёт итогового баланса
+// const operations = [1000, -700, 300, -500, 10000];
+// const startBalance = 100;
+
+// function totalBalance(operations, startBalance = 0) {
+//     let balance = startBalance;
+//     for (const operation of operations) {
+//         balance += operation;
+//     }
+//     return balance;
+// }
+
+// function isPositiveBalance(balance) {
+//     return balance < 0;
+// }
+
+// function averageBalance(operations) {
+//     let averageIncome, averageConsumption;
+//     let income = [],
+//         consumption = [];
+//     for (const operation of operations) {
+//         if (operation < 0) {
+//             consumption.push(operation * -1);
+//         } else {
+//             income.push(operation);
+//         }
+//     }
+//     averageIncome = totalBalance(income) / income.length;
+//     averageConsumption = totalBalance(consumption) / consumption.length;
+//     return [averageIncome, averageConsumption];
+// }
+
+// console.log(`Итоговый баланс: ${totalBalance(operations, startBalance)}`);
+// const [averageIncome, averageConsumption] = averageBalance(operations);
+// console.log('Средний доход', averageIncome);
+// console.log('Средний расход', averageConsumption);
+
+// //  callback
+// function add(a, b) {
+//     return a + b;
+// }
+
+// function subtrack(a, b) {
+//     return a - b;
+// }
+
+// function calculate(a, b, fn) {
+//     console.log(fn.name);
+//     return fn(a, b);
+// }
+
+// console.log(calculate(5, 3, add));
+
+// //  Возврат функции
+// function power(pow) {
+//     return function (num) {
+//         return num ** pow;
+//     };
+// }
+
+// const powerOfTwo = power(2);
+// const powerOfThree = power(3);
+// console.log(powerOfTwo(5));
+// console.log(powerOfThree(5));
+
+// console.log(power(5)(4));
+
+// //  Упражнение - стрелочные функции
+
+// const power = (pow) => (num) => num ** pow;
+
+// const powerOfTwo = power(2);
+// const powerOfThree = power(3);
+// console.log(powerOfTwo(5));
+// console.log(powerOfThree(5));
+
+// console.log(power(5)(4));
+
+// //  forEach, map
+// const score = [5, 10, 0, 15];
+
+// for (const [i, item] of score.entries()) {
+//     console.log(`Раунд ${i + 1}: ${item}`);
+// }
+// console.log(`----------------------------------`);
+
+// score.forEach((scoreEl, index, arr) =>
+//     console.log(`Раунд ${index + 1}: ${scoreEl}`, arr)
+// );
+
+// const transactionInUSD = [10, -7, 50, -10, 100];
+// const transactionInRUB = transactionInUSD.map(
+//     (transaction) => transaction * 60
+// );
+// console.log(transactionInUSD);
+// console.log(transactionInRUB);
+
+// //  filter
+// const operations = [100, -20, 7, -20, 50];
+// const positiveOperations = operations
+//     .filter((operation) => operation > 0)
+//     .map((el) => el * 60)
+//     .filter((el) => el < 3000);
+// console.log(positiveOperations);
+
+// //  Упражнение - вывод изменения цен
+// const prices = [
+//     [100, 200],
+//     [120, 100],
+//     [200, 350],
+// ];
+// let res = prices.map(([x, y]) => y - x).filter((el) => el > 0);
+// console.log(res);
+
+// //  reduce
+// const operations = [100, -20, 7, -30, 50];
+// const balance = operations.reduce((acc, operation, i) => {
+//     console.log(`Итерация: ${i}, acc: ${acc}, operation: ${operation}`);
+//     return (acc += operation);
+// }, 0);
+// console.log(balance);
+
+// //  Упражнение - среднее значение
+// const arr = [1, 4, 4, 10];
+// const avg = arr.reduce((acc, value, i) =>
+//     i === arr.length - 1 ? (acc + value) / arr.length : (acc += value)
+// );
+// console.log(avg);
+
+// //  find и findindex
+// const arr = [2, 4, 4, 10];
+// const res = arr.find((el) => el > 3);
+// const res1 = arr.findIndex((el) => el > 3);
+// console.log('значение: ' + res, 'индекс: ' + res1);
+
+//Упражнение - реализация some
+/*
+Написать функцию, которая возвращает true,
+если элемент есть, и false, если нет.
+*/
+
+// const arr = [2, 4, 4, 10, 20];
+// function some(array, element) {
+//     return array.find((el) => el === element) != undefined;
+// }
+
+// console.log(some(arr, 3));
+
+// //  flat и flatMap
+// const prices = [
+//     [2, 4],
+//     [3, 4],
+//     [10, [20, 50]],
+// ];
+// console.table(prices.flat(2));
+// console.table(prices.flatMap((el) => el.concat([1])));
+
+// //  sort
+// const users = ['Вася', 'Маша', 'Катя', 'Аня'];
+// console.log(users);
+// users.sort();
+// console.log(users);
+
+// const operations = [100, -20, 7, -30, 50];
+// operations.sort((a, b) => b - a);
+// console.log(operations);
+
+// const array = [1, 2, 3, 4, 5];
+// console.log(new Array(1, 2, 3, 4, 5));
+
+// const array2 = new Array(5);
+// console.log(array2.fill(1, 0, 2));
+
+// const array3 = Array.from(
+//     { length: 10 },
+//     () => +(Math.random() * 1000).toFixed(2)
+// );
+// console.log(array3);
+
+// const stringArray = [
+//     '10-02-2022',
+//     'test',
+//     '11/12/2023',
+//     '00/13/2022',
+//     '00/13/2022',
+//     'tt/11/20ts',
+//     '012/011/20ts',
+// ];
+
+// function canDelete(array) {
+//     return array
+//         .map((el) => (el.split('-').length > 1 ? el.split('-') : el.split('/')))
+//         .filter(
+//             ([day, month, year]) =>
+//                 day > 0 && day < 32 && month > 0 && +month < 13 && Number(year)
+//         )
+//         .map((array) => array.join('-'));
+// }
+
+// function canDelete2(array) {}
+
+// console.table(canDelete(stringArray));
+// console.table(stringArray);
+
+// //  Домашнее задание
+// /*
+//     Дан массив строк ['10-02-2022','тест','11/12/2023','00/13/2022','41/12/2023'];
+//     Необходимо написать функцию, которая удаляла бы из массива все строки, которые нельзя перевести в дату
+//     (можно: 10-02-2022 и 11/12/2023) и возвращала новый массив вида:
+//     -   ['10-02-2022','12-11-2023']
+// */
+
+// const stringArray = [
+//     '10-02-2022',
+//     'тест',
+//     '11/12/2023',
+//     '00/13/2022',
+//     '41/12/2023',
+//     '02/29/2023',
+//     '02/29/2024',
+//     'tt/11/20ts',
+//     '012/011/20ts',
+// ];
+
+// function canDelete(array, fn) {
+//     return array
+//         .map((element) => {
+//             let splitArray = element.split('-');
+//             if (splitArray.length < 3) {
+//                 splitArray = element.split('/');
+//                 if (splitArray.length === 3) {
+//                     const [day] = splitArray.splice(1, 1);
+//                     splitArray.unshift(day);
+//                 }
+//             }
+//             return splitArray;
+//         })
+//         .filter((dateArray) => fn(dateArray))
+//         .map((array) => array.join('-'));
+// }
+
+// function filterPattern(array) {
+//     const [day, month, year] = array;
+//     const leapYear = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+//     const daysPerMonth = [
+//         31,
+//         leapYear ? 29 : 28,
+//         31,
+//         30,
+//         31,
+//         30,
+//         31,
+//         31,
+//         30,
+//         31,
+//         30,
+//         31,
+//     ];
+
+//     return (
+//         day > 0 &&
+//         day <= daysPerMonth[month - 1] &&
+//         month > 0 &&
+//         month < 13 &&
+//         year > 1900
+//     );
+// }
+
+// console.log(canDelete(stringArray, filterPattern));
+
+//  Работа со строками
+const fullUserName = 'Вася aka Terminator Пупкин';
+const userName = fullUserName.slice(0, fullUserName.indexOf(' '));
+const userSurName = fullUserName.slice(fullUserName.lastIndexOf(' ') + 1);
+console.log(userName, userSurName);
+
+const str = 'Вася Пупкин';
+console.log(str.includes('а'));
+console.log(str.startsWith('а'));
+console.log(str.endsWith('а'));
+
+console.log(new String('Вася Пупкин'));
+console.log(str.toLowerCase());
+console.log(str.toUpperCase());
+console.log(str.replace('В', 'Ф'));
+console.log(str.replace('П', 'Д'));
+console.log(str.replace('а', 'и'));
+console.log(str.replaceAll('а', 'и'));
+console.log(str.replace(/a/g, 'и'));
+
+const str2 = ' Вася Пупкина     \n';
+console.log(str2.trim());
+console.log(str2.trimStart());
+console.log(str2.trimEnd());
+
+// //  Упражнение - проверка номера
+// /* верные */
+// const num1 = '89103235356';
+// const num2 = '+79103235356';
+// const num3 = '+7(910)3235356';
+// const num4 = '+7(910) 323-53-56';
+// const num5 = ' +7(910) 323-53-56 ';
+// /* не верные */
+// const num1Error = '89103235';
+// const num2Error = '+7d910d323-53-56';
+// const num3Error = '9+7103235356';
+// const num4Error = '89103g35356';
+
+// function isValid(num) {
+//     num = num.trim().replace('+7', 8);
+//     if (!num.startsWith('8')) {
+//         return false;
+//     }
+
+//     num = num
+//         .replaceAll('(', '')
+//         .replaceAll(')', '')
+//         .replaceAll('-', '')
+//         .replaceAll(' ', '');
+//     if (num.length != 11) {
+//         return false;
+//     }
+
+//     let onlyNumber = true;
+//     for (const char of num) {
+//         if (isNaN(Number(char))) {
+//             onlyNumber = false;
+//             break;
+//         }
+//     }
+//     return onlyNumber;
+// }
+
+// console.log(isValid(num1), num1);
+// console.log(isValid(num2), num2);
+// console.log(isValid(num3), num3);
+// console.log(isValid(num4), num4);
+// console.log(isValid(num5), num5);
+
+// console.log(isValid(num1Error));
+// console.log(isValid(num2Error));
+// console.log(isValid(num3Error));
+// console.log(isValid(num4Error));
+
+// const userFullName = 'Вася Пупкин Васильевич';
+// console.log(userFullName.split(' '));
+// const [firstName, familyName, lastName] = userFullName.split(' ');
+// console.log(firstName);
+// console.log(familyName);
+// console.log(lastName);
+
+// const arr = ['Ты', 'знаешь', 'JS'];
+// console.log(arr.join(' '));
+
+// const film = 'Звёздные войны';
+// console.log(film.padStart());
+
+// //  Упражнение - максировка карты
+// const card = '2342834503458353';
+// console.log(
+//     ('*'.repeat(card.length / 4) + ' ')
+//         .repeat(card.length / 4 - 1)
+//         .concat(card.slice(-4))
+// );
