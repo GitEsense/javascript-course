@@ -1,19 +1,21 @@
 //  Домашнее задание - Массивы
-function crypto(password) {
+function transformPassword(password) {
     const strArray = password.split('');
-    const crypt1 = strArray.splice(strArray.length / 2);
-    strArray.reverse();
-    crypt1.reverse();
-    for (let i = 1; i < crypt1.length; i++) {
-        crypt1.push(crypt1[i]);
-        crypt1.splice(i, 1);
+    const firstHalfOfPassword = strArray.slice(0, strArray.length / 2);
+    const secondHalfOfPassword = strArray.slice(strArray.length / 2);
+
+    firstHalfOfPassword.reverse();
+    secondHalfOfPassword.reverse();
+    for (let i = 1; i < secondHalfOfPassword.length; i++) {
+        secondHalfOfPassword.push(secondHalfOfPassword[i]);
+        secondHalfOfPassword.splice(i, 1);
     }
-    return strArray.concat(crypt1).join('');
+    return firstHalfOfPassword.concat(secondHalfOfPassword).join('');
 }
-function check(str1, password) {
-    return password === crypto(str1);
+function checkPassword(str1, password) {
+    return password === transformPassword(str1);
 }
 
-console.log(crypto('password')); //  ssapdorw
-console.log(check('ssapdorw', 'password')); //  true
-console.log(check('ssapdorw', 'not')); // false
+console.log(transformPassword('password')); //  ssapdorw
+console.log(checkPassword('ssapdorw', 'password')); //  true
+console.log(checkPassword('ssapdorw', 'not')); // false
