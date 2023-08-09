@@ -10,11 +10,9 @@
 const arr = [1, 40, -5, 10, 0];
 function sortArray(array) {
     for (let i = 0; i < array.length; i++) {
-        for (let j = 0; j < array.length; j++) {
-            let temp = array[i];
-            if (temp < array[j]) {
-                array[i] = array[j];
-                array[j] = temp;
+        for (let j = i; j < array.length; j++) {
+            if (array[i] > array[j]) {
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
     }
