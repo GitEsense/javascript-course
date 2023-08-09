@@ -12,12 +12,11 @@ const arr = [
 
 //  Функция фильтрации
 function filterArray(array, fn) {
-    const resultArray = Array.from(array);
-    for (let i = 0; i < resultArray.length; i++) {
-        let isDelete = fn(resultArray[i]);
-        if (isDelete) {
-            resultArray.splice(i, 1);
-            i--;
+    const resultArray = [];
+    for (let i = 0; i < array.length; i++) {
+        let isDelete = fn(array[i]);
+        if (!isDelete) {
+            resultArray.push(array[i]);
         }
     }
     return resultArray;
