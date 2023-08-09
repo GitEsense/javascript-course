@@ -309,73 +309,73 @@
 // console.log([...arr1, ...arr2, ...arr3]);
 
 //  Управление элементами массива
-// const obj2 = {
-//     uuu: 111,
-//     bbb: 222,
-//     ccc: undefined,
-//     ggg: undefined,
-//     login: {
-//         username: 'test',
-//         password: 'testpassword',
-//     },
-//     user: {
-//         id: 12345,
-//         firstname: 'firstname',
-//         lastname: 'lastname',
-//     },
-//     message: {
-//         msgId: 12345,
-//         msgText: 'новый текст',
-//         msgEdit: undefined,
-//         msgDate: Date.now(),
-//     },
-// };
-// const obj = {
-//     uuu: 111,
-//     bbb: 222,
-//     ccc: undefined,
-//     ggg: undefined,
-//     username: 'test',
-//     password: 'testpassword',
-//     id: 12345,
-//     firstname: 'firstname',
-//     lastname: 'lastname',
-//     msgId: 12345,
-//     msgText: 'новый текст',
-//     msgEdit: undefined,
-//     msgDate: Date.now(),
-// };
-// class Test {
-//     constructor(obj) {
-//         const user = ['id', 'firstname', 'lastname'];
-//         const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
-//         const login = ['username', 'password'];
-//         for (let key in obj) {
-//             if (!!obj[key]) {
-//                 switch (true) {
-//                     case user.includes(key):
-//                         this['user'] ??= {};
-//                         this.user[key] = obj[key];
-//                         break;
-//                     case message.includes(key):
-//                         this['message'] ??= {};
-//                         this.message[key] = obj[key];
-//                         break;
-//                     case login.includes(key):
-//                         this['login'] ??= {};
-//                         this.login[key] = obj[key];
-//                         break;
-//                     default:
-//                         this[key] = obj[key];
-//                 }
-//             }
-//         }
-//     }
+const obj2 = {
+    uuu: 111,
+    bbb: 222,
+    ccc: undefined,
+    ggg: undefined,
+    login: {
+        username: 'test',
+        password: 'testpassword',
+    },
+    user: {
+        id: 12345,
+        firstname: 'firstname',
+        lastname: 'lastname',
+    },
+    message: {
+        msgId: 12345,
+        msgText: 'новый текст',
+        msgEdit: undefined,
+        msgDate: Date.now(),
+    },
+};
+const obj = {
+    uuu: 111,
+    bbb: 222,
+    ccc: undefined,
+    ggg: undefined,
+    username: 'test',
+    password: 'testpassword',
+    id: 12345,
+    firstname: 'firstname',
+    lastname: 'lastname',
+    msgId: 12345,
+    msgText: 'новый текст',
+    msgEdit: undefined,
+    msgDate: Date.now(),
+};
+class Test {
+    constructor(obj) {
+        const user = ['id', 'firstname', 'lastname'];
+        const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
+        const login = ['username', 'password'];
+        for (let key in obj) {
+            if (!!obj[key]) {
+                switch (true) {
+                    case user.includes(key):
+                        this['user'] ??= {};
+                        this.user[key] = obj[key];
+                        break;
+                    case message.includes(key):
+                        this['message'] ??= {};
+                        this.message[key] = obj[key];
+                        break;
+                    case login.includes(key):
+                        this['login'] ??= {};
+                        this.login[key] = obj[key];
+                        break;
+                    default:
+                        this[key] = obj[key];
+                }
+            }
+        }
+    }
 
-//     get() {
-//         return this;
-//     }
-// }
+    get() {
+        return this;
+    }
+}
 
 // const testClass = new Test(obj);
 // console.log(obj);
@@ -1133,3 +1133,34 @@
 // console.log(warehouse.findGoodById(3));
 // console.log(warehouse.findGoodById(1));
 // console.log(warehouse.findGoodById(2));
+
+//  Домашнее задание
+/* 
+    Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
+    {
+        search: 'Вася',
+        take: 10,
+    }
+
+    //  search=Вася&take=10
+*/
+const queryParams = {
+    search: 'Вася',
+    city: { vegas: { people: 1000 } },
+    take: 10,
+};
+
+function objectToQueryString(query) {
+    const queryArray = [];
+    const objKeys = Object.keys(query);
+    for (const key of objKeys) {
+        if (typeof query[key] == 'object') {
+            continue;
+        }
+        queryArray.push(`${key}=${query[key]}`);
+    }
+    return queryArray.join('&');
+}
+
+const resultString = objectToQueryString(queryParams);
+console.log(resultString);
