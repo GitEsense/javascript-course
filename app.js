@@ -827,30 +827,30 @@
 
 // console.log(canDelete(stringArray, filterPattern));
 
-//  Работа со строками
-const fullUserName = 'Вася aka Terminator Пупкин';
-const userName = fullUserName.slice(0, fullUserName.indexOf(' '));
-const userSurName = fullUserName.slice(fullUserName.lastIndexOf(' ') + 1);
-console.log(userName, userSurName);
+// //  Работа со строками
+// const fullUserName = 'Вася aka Terminator Пупкин';
+// const userName = fullUserName.slice(0, fullUserName.indexOf(' '));
+// const userSurName = fullUserName.slice(fullUserName.lastIndexOf(' ') + 1);
+// console.log(userName, userSurName);
 
-const str = 'Вася Пупкин';
-console.log(str.includes('а'));
-console.log(str.startsWith('а'));
-console.log(str.endsWith('а'));
+// const str = 'Вася Пупкин';
+// console.log(str.includes('а'));
+// console.log(str.startsWith('а'));
+// console.log(str.endsWith('а'));
 
-console.log(new String('Вася Пупкин'));
-console.log(str.toLowerCase());
-console.log(str.toUpperCase());
-console.log(str.replace('В', 'Ф'));
-console.log(str.replace('П', 'Д'));
-console.log(str.replace('а', 'и'));
-console.log(str.replaceAll('а', 'и'));
-console.log(str.replace(/a/g, 'и'));
+// console.log(new String('Вася Пупкин'));
+// console.log(str.toLowerCase());
+// console.log(str.toUpperCase());
+// console.log(str.replace('В', 'Ф'));
+// console.log(str.replace('П', 'Д'));
+// console.log(str.replace('а', 'и'));
+// console.log(str.replaceAll('а', 'и'));
+// console.log(str.replace(/a/g, 'и'));
 
-const str2 = ' Вася Пупкина     \n';
-console.log(str2.trim());
-console.log(str2.trimStart());
-console.log(str2.trimEnd());
+// const str2 = ' Вася Пупкина     \n';
+// console.log(str2.trim());
+// console.log(str2.trimStart());
+// console.log(str2.trimEnd());
 
 // //  Упражнение - проверка номера
 // /* верные */
