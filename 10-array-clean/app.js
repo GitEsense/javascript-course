@@ -14,7 +14,7 @@ const arr = [
 function filterArray(array, fn) {
     const resultArray = [];
     for (let i = 0; i < array.length; i++) {
-        let isDelete = fn(array[i]);
+        const isDelete = fn(array[i]);
         if (!isDelete) {
             resultArray.push(array[i]);
         }
