@@ -1133,34 +1133,3 @@
 // console.log(warehouse.findGoodById(3));
 // console.log(warehouse.findGoodById(1));
 // console.log(warehouse.findGoodById(2));
-
-//  Домашнее задание
-/* 
-    Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
-    {
-        search: 'Вася',
-        take: 10,
-    }
-
-    //  search=Вася&take=10
-*/
-const queryParams = {
-    search: 'Вася',
-    city: { vegas: { people: 1000 } },
-    take: 10,
-};
-
-function objectToQueryString(query) {
-    const queryArray = [];
-    const objKeys = Object.keys(query);
-    for (const key of objKeys) {
-        if (typeof query[key] == 'object') {
-            continue;
-        }
-        queryArray.push(`${key}=${query[key]}`);
-    }
-    return queryArray.join('&');
-}
-
-const resultString = objectToQueryString(queryParams);
-console.log(resultString);
