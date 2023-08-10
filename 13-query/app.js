@@ -14,9 +14,9 @@ const queryParams = {
 };
 
 function objectToQueryString(query) {
-    const queryArray = new Array();
-    for (const key of Object.keys(query)) {
-        queryArray.push(`${key}=${query[key]}`);
+    const queryArray = [];
+    for (const [key, value] of Object.entries(query)) {
+        queryArray.push(`${key}=${value}`);
     }
     return queryArray.join('&');
 }
