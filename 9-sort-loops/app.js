@@ -9,14 +9,15 @@
 */
 const arr = [1, 40, -5, 10, 0];
 function sortArray(array) {
-    for (let i = 0; i < array.length; i++) {
-        for (let j = i; j < array.length; j++) {
-            if (array[i] > array[j]) {
-                [array[i], array[j]] = [array[j], array[i]];
+    const sortArray = Array.from(array);
+    for (let i = 0; i < sortArray.length; i++) {
+        for (let j = i; j < sortArray.length; j++) {
+            if (sortArray[i] > sortArray[j]) {
+                [sortArray[i], sortArray[j]] = [sortArray[j], sortArray[i]];
             }
         }
     }
-    return array;
+    return sortArray;
 }
 
 console.log(sortArray(arr));
