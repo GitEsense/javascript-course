@@ -8,16 +8,19 @@
     -   Нужно сравнивать и менять элементы
 */
 const arr = [1, 40, -5, 10, 0];
-function sortArray(array) {
-    const sortArray = Array.from(array);
-    for (let i = 0; i < sortArray.length; i++) {
-        for (let j = i; j < sortArray.length; j++) {
-            if (sortArray[i] > sortArray[j]) {
-                [sortArray[i], sortArray[j]] = [sortArray[j], sortArray[i]];
+function sortArrayInAscending(array) {
+    const resultArray = [...array];
+    for (let i = 0; i < resultArray.length; i++) {
+        for (let j = i; j < resultArray.length; j++) {
+            if (resultArray[i] > resultArray[j]) {
+                [resultArray[i], resultArray[j]] = [
+                    resultArray[j],
+                    resultArray[i],
+                ];
             }
         }
     }
-    return sortArray;
+    return resultArray;
 }
 
-console.log(sortArray(arr));
+console.log(sortArrayInAscending(arr));
