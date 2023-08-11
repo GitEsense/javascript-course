@@ -309,73 +309,73 @@
 // console.log([...arr1, ...arr2, ...arr3]);
 
 //  Управление элементами массива
-// const obj2 = {
-//     uuu: 111,
-//     bbb: 222,
-//     ccc: undefined,
-//     ggg: undefined,
-//     login: {
-//         username: 'test',
-//         password: 'testpassword',
-//     },
-//     user: {
-//         id: 12345,
-//         firstname: 'firstname',
-//         lastname: 'lastname',
-//     },
-//     message: {
-//         msgId: 12345,
-//         msgText: 'новый текст',
-//         msgEdit: undefined,
-//         msgDate: Date.now(),
-//     },
-// };
-// const obj = {
-//     uuu: 111,
-//     bbb: 222,
-//     ccc: undefined,
-//     ggg: undefined,
-//     username: 'test',
-//     password: 'testpassword',
-//     id: 12345,
-//     firstname: 'firstname',
-//     lastname: 'lastname',
-//     msgId: 12345,
-//     msgText: 'новый текст',
-//     msgEdit: undefined,
-//     msgDate: Date.now(),
-// };
-// class Test {
-//     constructor(obj) {
-//         const user = ['id', 'firstname', 'lastname'];
-//         const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
-//         const login = ['username', 'password'];
-//         for (let key in obj) {
-//             if (!!obj[key]) {
-//                 switch (true) {
-//                     case user.includes(key):
-//                         this['user'] ??= {};
-//                         this.user[key] = obj[key];
-//                         break;
-//                     case message.includes(key):
-//                         this['message'] ??= {};
-//                         this.message[key] = obj[key];
-//                         break;
-//                     case login.includes(key):
-//                         this['login'] ??= {};
-//                         this.login[key] = obj[key];
-//                         break;
-//                     default:
-//                         this[key] = obj[key];
-//                 }
-//             }
-//         }
-//     }
+const obj2 = {
+    uuu: 111,
+    bbb: 222,
+    ccc: undefined,
+    ggg: undefined,
+    login: {
+        username: 'test',
+        password: 'testpassword',
+    },
+    user: {
+        id: 12345,
+        firstname: 'firstname',
+        lastname: 'lastname',
+    },
+    message: {
+        msgId: 12345,
+        msgText: 'новый текст',
+        msgEdit: undefined,
+        msgDate: Date.now(),
+    },
+};
+const obj = {
+    uuu: 111,
+    bbb: 222,
+    ccc: undefined,
+    ggg: undefined,
+    username: 'test',
+    password: 'testpassword',
+    id: 12345,
+    firstname: 'firstname',
+    lastname: 'lastname',
+    msgId: 12345,
+    msgText: 'новый текст',
+    msgEdit: undefined,
+    msgDate: Date.now(),
+};
+class Test {
+    constructor(obj) {
+        const user = ['id', 'firstname', 'lastname'];
+        const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
+        const login = ['username', 'password'];
+        for (let key in obj) {
+            if (!!obj[key]) {
+                switch (true) {
+                    case user.includes(key):
+                        this['user'] ??= {};
+                        this.user[key] = obj[key];
+                        break;
+                    case message.includes(key):
+                        this['message'] ??= {};
+                        this.message[key] = obj[key];
+                        break;
+                    case login.includes(key):
+                        this['login'] ??= {};
+                        this.login[key] = obj[key];
+                        break;
+                    default:
+                        this[key] = obj[key];
+                }
+            }
+        }
+    }
 
-//     get() {
-//         return this;
-//     }
-// }
+    get() {
+        return this;
+    }
+}
 
 // const testClass = new Test(obj);
 // console.log(obj);
@@ -921,3 +921,246 @@
 //         .repeat(card.length / 4 - 1)
 //         .concat(card.slice(-4))
 // );
+
+// const userArray = ['Вася', 'Пупкин', 24];
+// const user = {
+//     name: 'Вася',
+//     surname: 'Пупкин',
+//     age: 24,
+//     skills: ['Программирование', 'Готовка'],
+//     eduBasic: 'Школа 10',
+//     eduPro: 'МФТИ',
+// };
+// console.log(user['skills']);
+// const level = 'Pro';
+// console.log(user['edu' + level]);
+
+// //const res = prompt('Введите свойство');
+// user['city'] = 'Москва';
+// console.log(user);
+
+// user.age = 30;
+// console.log(user);
+
+// //  Упражнение - сортировка пользователей
+// const users = [
+//     {
+//         name: 'Вася',
+//         age: 30,
+//     },
+//     {
+//         name: 'Катя',
+//         age: 18,
+//     },
+//     {
+//         name: 'Аня',
+//         age: 40,
+//     },
+//     {
+//         name: 'Петя',
+//         age: 25,
+//     },
+// ];
+
+// const result = users.sort((a, b) => a.age - b.age);
+// console.log(result);
+
+// //  Упражнение - преобразование объектов
+// const users = [
+//     {
+//         name: 'Вася',
+//         surname: 'Пупкин',
+//         age: 30,
+//         skills: ['Разработка', 'Dev0ps'],
+//     },
+//     {
+//         name: 'Катя',
+//         surname: 'Белова',
+//         age: 18,
+//         skills: ['Дизайн'],
+//     },
+// ];
+
+// const result = users.map((user) => {
+//     return {
+//         fullName: `${user.name} ${user.surname}`,
+//         skillNum: user.skills.length,
+//     };
+// });
+// console.log(result);
+
+// const user = {
+//     name: 'Вася',
+//     surname: 'Пупкин',
+//     age: 24,
+//     getFullName: function () {
+//         console.log(this);
+//         return this.name + ' ' + this.surname;
+//     },
+// };
+// console.log(user.getFullName());
+
+// //  Упражнение - кошелёк
+// /* Реализовать методы увеличения и уменьшения баланса,
+// при котором каждая операция сохраняется в массив
+// operations в виде { reason: 'Оплата налогов', sum: -100 }.
+// Возвращается true, если успешно и false, если не зватает баланса.
+// Также реализовать метод вывода числа операций по кошельку
+// */
+
+// const wallet = {
+//     balance: 0,
+//     operations: [],
+//     increase: function (reason, sum) {
+//         this.operations.push({ reason, sum });
+//         this.balance += sum;
+//         return true;
+//     },
+//     decrease: function (reason, sum) {
+//         if (this.balance < sum) {
+//             console.log('Недостаточно баланса');
+//             return false;
+//         }
+//         this.balance -= sum;
+//         this.operations.push({ reason, sum: -sum });
+//         return true;
+//     },
+//     getCountTransaction: function () {
+//         return this.operations.length;
+//     },
+// };
+
+// console.log(wallet.increase('Зарплата', 10000));
+// console.log(wallet.decrease('Покупка продуктов', 5000));
+// console.log(wallet.decrease('Выезд на природу', 3000));
+// console.log(wallet.decrease('Поездка на такси', 3000));
+// console.log(wallet.operations);
+// console.log(wallet.getCountTransaction());
+
+// const cities = {
+//     msk: {
+//         let: 200,
+//         temp: { celcius: 25 },
+//     },
+//     spb: {
+//         lt: 100,
+//     },
+// };
+// let sumTemp = 0;
+// let citiesCount = Object.keys(cities).length;
+// for (const key in cities) {
+//     console.log(key);
+//     sumTemp += cities[key].temp;
+// }
+
+// console.log(sumTemp / citiesCount);
+
+// sumTemp = 0;
+// for (const key of Object.keys(cities)) {
+//     sumTemp += cities[key].temp;
+// }
+
+// let userProfile = {
+//     username: 'Вася',
+//     age: 30,
+//     city: 'Москва',
+// };
+
+// const { age, username, ...other } = userProfile;
+// console.log(age, username, other);
+
+// const additionalData = {
+//     skills: ['Разработка', 'Дизайн'],
+//     creditCard: '2324-2424-4242-2236',
+// };
+
+// userProfile = {
+//     ...userProfile,
+//     ...additionalData,
+// };
+// console.log(userProfile);
+
+// const city = 'spb';
+// if (cities[city] != undefined && cities[city].temp != undefined) {
+//     console.log(cities[city].temp.celcius);
+// }
+
+// console.log(cities[city]?.temp?.celcius ?? 'Нет');
+
+// //  Упражнение - склад
+// const warehouse = {
+//     goods: [],
+//     findGoodById: function (id) {
+//         return this.goods.find((el) => el.id === id);
+//     },
+//     addGood: function (good) {
+//         const existedGood = this.findGoodById(good.id);
+//         if (existedGood) {
+//             console.log('Товар уже существует');
+//             return false;
+//         }
+//         this.goods.push(good);
+//         console.log(`Товар с ID: ${good.id} добавлен`);
+//         return true;
+//     },
+//     getWeightKg: function () {
+//         return this.goods.reduce((acc, el) => acc + (el?.weight?.kg ?? 0), 0);
+//     },
+// };
+
+// const car = {
+//     id: 1,
+//     weight: { kg: 1000 },
+//     brand: 'Ford',
+// };
+
+// const chair = {
+//     id: 2,
+//     weight: { kg: 2 },
+// };
+
+// const paper = {
+//     id: 3,
+//     color: 'red',
+// };
+
+// warehouse.addGood(car);
+// warehouse.addGood(car);
+// warehouse.addGood(chair);
+// warehouse.addGood(paper);
+
+// console.log('Общий вес: ' + warehouse.getWeightKg() + 'кг');
+// console.log(warehouse.findGoodById(3));
+// console.log(warehouse.findGoodById(1));
+// console.log(warehouse.findGoodById(2));
+
+//  Домашнее задание
+/* 
+    Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
+    {
+        search: 'Вася',
+        take: 10,
+    }
+
+    //  search=Вася&take=10
+*/
+const queryParams = {
+    search: 'Вася',
+    city: { vegas: { people: 1000 } },
+    take: 10,
+};
+
+function objectToQueryString(query) {
+    const queryArray = [];
+    const objKeys = Object.keys(query);
+    for (const key of objKeys) {
+        if (typeof query[key] == 'object') {
+            continue;
+        }
+        queryArray.push(`${key}=${query[key]}`);
+    }
+    return queryArray.join('&');
+}
+
+const resultString = objectToQueryString(queryParams);
+console.log(resultString);
