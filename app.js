@@ -1,3 +1,4 @@
+'use strict';
 // //  Упражнение - Размещение депозита
 
 // const deposit = 12000;
@@ -1134,33 +1135,155 @@ class Test {
 // console.log(warehouse.findGoodById(1));
 // console.log(warehouse.findGoodById(2));
 
-//  Домашнее задание
-/* 
-    Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
-    {
-        search: 'Вася',
-        take: 10,
-    }
+// //  Домашнее задание
+// /*
+//     Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
+//     {
+//         search: 'Вася',
+//         take: 10,
+//     }
 
-    //  search=Вася&take=10
-*/
-const queryParams = {
-    search: 'Вася',
-    city: { vegas: { people: 1000 } },
-    take: 10,
-};
+//     //  search=Вася&take=10
+// */
+// const queryParams = {
+//     search: 'Вася',
+//     city: { vegas: { people: 1000 } },
+//     take: 10,
+// };
 
-function objectToQueryString(query) {
-    const queryArray = [];
-    const objKeys = Object.keys(query);
-    for (const key of objKeys) {
-        if (typeof query[key] == 'object') {
-            continue;
-        }
-        queryArray.push(`${key}=${query[key]}`);
-    }
-    return queryArray.join('&');
-}
+// function objectToQueryString(query) {
+//     const queryArray = [];
+//     for (const [key, value] of Object.entries(query)) {
+//         if (typeof query[key] == 'object') {
+//             continue;
+//         }
+//         queryArray.push(`${key}=${value}`);
+//     }
+//     return queryArray.join('&');
+// }
 
-const resultString = objectToQueryString(queryParams);
-console.log(resultString);
+// const resultString = objectToQueryString(queryParams);
+// console.log(resultString);
+
+// let firstName = 'Anton';
+// let firstName2 = firstName;
+// firstName2 = 'New';
+
+// console.log(firstName, firstName2);
+
+// const user = {
+//     name: 'Anton',
+//     id: 1,
+//     roles: ['Admin'],
+// };
+
+// const newUser2 = {
+//     ...user,
+// };
+// newUser2.name = 'NewUser2';
+// newUser2.roles = [...newUser2.roles, 'User'];
+// console.log(user);
+// console.log(newUser2);
+
+// let successMessage = 'Успех';
+// const user = {
+//     name: 'Вася',
+//     roles: [],
+// };
+
+// function addRole(user, role) {
+//     if (role == 'admin') {
+//         const message = 'Ошибка';
+//         console.log(message);
+//         return user;
+//     }
+//     user.roles.push(role);
+//     let successMessage = 'Ура';
+//     console.log(successMessage);
+
+//     function logRoles() {
+//         console.log(user.roles);
+//     }
+//     logRoles();
+
+//     return user;
+// }
+
+// console.log(addRole(user, 'dev'));
+// console.log(successMessage);
+// const user = {
+//     name: 'Вася',
+//     surname: 'Пупкин',
+//     age: 20,
+//     getUserInfo: function () {
+//         console.log(this);
+//         console.log(`${this.name} ${this.surname}`);
+
+//         const canDrink = () => {
+//             if (this.age >= 18) {
+//                 console.log('Может уже пить');
+//             } else {
+//                 console.log('Не может пить');
+//             }
+//         };
+//         canDrink();
+//     },
+// };
+
+// user.getUserInfo();
+
+// function sumNum(num1, num2) {
+//     console.log(arguments);
+//     console.log([...arguments].reduce((a, b) => a + b));
+//     return num1 + num2;
+// }
+
+// console.log(sumNum(1, 4, 3, 7));
+
+//  Упражнение объект в объекте
+
+// /*
+// Дополнить объект методом для получения имени:
+// - компании
+// - сео
+// - сотрудника
+// */
+
+// const company = {
+//     name: 'ООО Агро',
+//     employees: [
+//         {
+//             name: 'Света',
+//             getName: function () {
+//                 return this.name;
+//             },
+//         },
+//         {
+//             name: 'Маша',
+//             getName: function () {
+//                 return this.name;
+//             },
+//         },
+//         {
+//             name: 'Катя',
+//             getName: function () {
+//                 return this.name;
+//             },
+//         },
+//     ],
+//     ceo: {
+//         name: 'Вася',
+//         getName: function () {
+//             return `Имя сотрудника СЕО: ${this.name}`;
+//         },
+//     },
+//     getCompanyName: function () {
+//         return `Название компании: ${this.name}`;
+//     },
+// };
+
+// console.log(company.getCompanyName());
+// console.log(
+//     company.employees.map((employee) => employee.getName()).join('\n* ')
+// );
+// console.log(company.ceo.getName());
