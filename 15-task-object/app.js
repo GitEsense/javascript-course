@@ -123,8 +123,8 @@ for (let i = 0; i < randomUpdateCount; i++) {
         title:
             title % getRandom(1, 5) === 0
                 ? 'Обновлённый текст #' + title
-                : undefined,
-        priority: priority % getRandom(1, 5) === 1 ? priority : undefined,
+                : null,
+        priority: priority % getRandom(1, 5) === 1 ? priority : null,
     };
     switch (priority) {
         case 4:
