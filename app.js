@@ -1,4 +1,4 @@
-'use strict';
+`use strict`;
 // //  Упражнение - Размещение депозита
 
 // const deposit = 12000;
@@ -309,74 +309,74 @@
 
 // console.log([...arr1, ...arr2, ...arr3]);
 
-//  Управление элементами массива
-const obj2 = {
-    uuu: 111,
-    bbb: 222,
-    ccc: undefined,
-    ggg: undefined,
-    login: {
-        username: 'test',
-        password: 'testpassword',
-    },
-    user: {
-        id: 12345,
-        firstname: 'firstname',
-        lastname: 'lastname',
-    },
-    message: {
-        msgId: 12345,
-        msgText: 'новый текст',
-        msgEdit: undefined,
-        msgDate: Date.now(),
-    },
-};
-const obj = {
-    uuu: 111,
-    bbb: 222,
-    ccc: undefined,
-    ggg: undefined,
-    username: 'test',
-    password: 'testpassword',
-    id: 12345,
-    firstname: 'firstname',
-    lastname: 'lastname',
-    msgId: 12345,
-    msgText: 'новый текст',
-    msgEdit: undefined,
-    msgDate: Date.now(),
-};
-class Test {
-    constructor(obj) {
-        const user = ['id', 'firstname', 'lastname'];
-        const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
-        const login = ['username', 'password'];
-        for (let key in obj) {
-            if (!!obj[key]) {
-                switch (true) {
-                    case user.includes(key):
-                        this['user'] ??= {};
-                        this.user[key] = obj[key];
-                        break;
-                    case message.includes(key):
-                        this['message'] ??= {};
-                        this.message[key] = obj[key];
-                        break;
-                    case login.includes(key):
-                        this['login'] ??= {};
-                        this.login[key] = obj[key];
-                        break;
-                    default:
-                        this[key] = obj[key];
-                }
-            }
-        }
-    }
+// //  Управление элементами массива
+// const obj2 = {
+//     uuu: 111,
+//     bbb: 222,
+//     ccc: undefined,
+//     ggg: undefined,
+//     login: {
+//         username: 'test',
+//         password: 'testpassword',
+//     },
+//     user: {
+//         id: 12345,
+//         firstname: 'firstname',
+//         lastname: 'lastname',
+//     },
+//     message: {
+//         msgId: 12345,
+//         msgText: 'новый текст',
+//         msgEdit: undefined,
+//         msgDate: Date.now(),
+//     },
+// };
+// const obj = {
+//     uuu: 111,
+//     bbb: 222,
+//     ccc: undefined,
+//     ggg: undefined,
+//     username: 'test',
+//     password: 'testpassword',
+//     id: 12345,
+//     firstname: 'firstname',
+//     lastname: 'lastname',
+//     msgId: 12345,
+//     msgText: 'новый текст',
+//     msgEdit: undefined,
+//     msgDate: Date.now(),
+// };
+// class Test {
+//     constructor(obj) {
+//         const user = ['id', 'firstname', 'lastname'];
+//         const message = ['msgId', 'msgText', 'msgEdit', 'msgDate'];
+//         const login = ['username', 'password'];
+//         for (let key in obj) {
+//             if (!!obj[key]) {
+//                 switch (true) {
+//                     case user.includes(key):
+//                         this['user'] ??= {};
+//                         this.user[key] = obj[key];
+//                         break;
+//                     case message.includes(key):
+//                         this['message'] ??= {};
+//                         this.message[key] = obj[key];
+//                         break;
+//                     case login.includes(key):
+//                         this['login'] ??= {};
+//                         this.login[key] = obj[key];
+//                         break;
+//                     default:
+//                         this[key] = obj[key];
+//                 }
+//             }
+//         }
+//     }
 
-    get() {
-        return this;
-    }
-}
+//     get() {
+//         return this;
+//     }
+// }
 
 // const testClass = new Test(obj);
 // console.log(obj);
@@ -1135,16 +1135,16 @@ class Test {
 // console.log(warehouse.findGoodById(1));
 // console.log(warehouse.findGoodById(2));
 
-// //  Домашнее задание
-// /*
-//     Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
-//     {
-//         search: 'Вася',
-//         take: 10,
-//     }
+//  Домашнее задание
+/* 
+    Написать функцию, которая принимает объект query параметров и возрвращает строку для вставки:
+    {
+        search: 'Вася',
+        take: 10,
+    }
 
-//     //  search=Вася&take=10
-// */
+    //  search=Вася&take=10
+*/
 // const queryParams = {
 //     search: 'Вася',
 //     city: { vegas: { people: 1000 } },
@@ -1153,11 +1153,12 @@ class Test {
 
 // function objectToQueryString(query) {
 //     const queryArray = [];
-//     for (const [key, value] of Object.entries(query)) {
+//     const objKeys = Object.keys(query);
+//     for (const key of objKeys) {
 //         if (typeof query[key] == 'object') {
 //             continue;
 //         }
-//         queryArray.push(`${key}=${value}`);
+//         queryArray.push(`${key}=${query[key]}`);
 //     }
 //     return queryArray.join('&');
 // }
@@ -1287,3 +1288,189 @@ class Test {
 //     company.employees.map((employee) => employee.getName()).join('\n* ')
 // );
 // console.log(company.ceo.getName());
+
+// const b = 1;
+// const a = {
+//     b,
+//     getB: function () {
+//         return this.b;
+//     },
+//     getBAlt() {
+//         return this.b;
+//     },
+// };
+
+// console.log(a);
+// console.log(a.getB());
+// console.log(a.getBAlt());
+
+// const audi = {
+//     make: 'Audi',
+//     model: 'A3',
+//     year: 2021,
+//     damages: [],
+//     addDamage(part, rate) {
+//         console.log(
+//             `У авто ${this.make} ${this.model} ${this.year} добавлено:\n- повреждение ${part} со степенью ${rate}`
+//         );
+//         this.damages.push({
+//             part,
+//             rate,
+//         });
+//     },
+// };
+// // audi.addDamage('Капот', 1);
+// const bmw = {
+//     make: 'BMW',
+//     model: 'X5',
+//     year: 2021,
+//     damages: [],
+// };
+
+// bmw.addDamage = audi.addDamage;
+// bmw.addDamage('Бампер', 2);
+
+// const addDamageFunction = audi.addDamage;
+// //  addDamageFunction('Бампер', 2);
+// audi.addDamage.call(bmw, 'Бампер', 2);
+// addDamageFunction.apply(bmw, ['Бампер', 1]);
+
+// const audi = {
+//     make: 'Audi',
+//     model: 'A3',
+//     damages: [],
+// };
+
+// const carManipulation = {
+//     addDamage(part, rate) {
+//         this.damages.push({ part, rate });
+//         console.log(`Добавили повреждение на ${this.make} ${this.model}`);
+//     },
+// };
+
+// const addDamageAudi = carManipulation.addDamage.bind(audi);
+// addDamageAudi('крыло', 2);
+
+// const addDamageAudiRoof = carManipulation.addDamage.bind(audi, 'крыша');
+// addDamageAudiRoof(5);
+// console.log(audi);
+
+// function removePassword(reset) {
+//     if (reset) {
+//         this.password = undefined;
+//     } else {
+//         this.password = '1';
+//     }
+// }
+
+// const user = {
+//     name: 'Иван',
+//     surname: 'Иванов',
+//     year: 19,
+//     login: 'IIvan',
+//     //password: `1820%3kja`,
+// };
+
+// const resetUserPassword = removePassword.bind(user, true);
+// //resetUserPassword();
+// removePassword.call(user, true);
+
+// console.log(user);
+
+// function init() {
+//     console.log('Start!');
+// }
+// init();
+// init();
+
+// (function () {
+//     console.log(`Start IIFO`);
+//     const a = 1;
+// })();
+
+// console.log(a);
+
+// function changeBalance(balance = 0) {
+//     return function (sum) {
+//         balance += sum;
+//         return balance;
+//     };
+// }
+
+// const change = changeBalance(222);
+// console.dir(change);
+// change(100);
+// console.dir(change);
+// change(-50);
+// console.dir(change);
+// console.log(change(200));
+
+/* 
+    Сделать функию пользователя которая берет за основу userInfo
+    и за счет замыкания создает новый объект, 
+    с которым можно работать как user1().increase(100) 
+    
+// */
+// const userInfo = {
+//     balance: 0,
+//     operations: 0,
+//     increase(sum) {
+//         this.balance += sum;
+//         this.operations++;
+//     },
+// };
+
+// function userIncrease() {
+//     const newObject = this;
+//     return function () {
+//         return newObject;
+//     };
+// }
+
+// const user1 = userIncrease.call({ ...userInfo });
+// const user2 = userIncrease.call({ ...userInfo });
+
+// for (let i = 0; i < Math.round(Math.random() * (10 - 1) + 1); i++) {
+//     user1().increase(Math.round(Math.random() * (1000 - 100) + 100));
+//     console.log('user1: ' + i, user1());
+// }
+// for (let i = 0; i < Math.round(Math.random() * (10 - 1) + 1); i++) {
+//     user2().increase(Math.round(Math.random() * (1000 - 100) + 100));
+//     console.log('user2: ' + i, user2());
+// }
+// function a() {
+//     let c = 1;
+//     return function b() {
+//         return c++;
+//     };
+// }
+// (function () {
+//     console.log({ result: this, type: typeof this });
+// }).apply(0);
+// (function () {
+//     console.log({ result: this, type: typeof this });
+// }).apply('0');
+
+function submitForm() {
+    const input = document.querySelector('.input').value;
+    if (!input) {
+        return;
+    }
+    document.querySelector('.panel').innerHTML = input;
+    document.querySelector('.input').value = '';
+    // document
+    //     .querySelector('.notification')
+    //     .classList.toggle('notification_hidden');
+
+    document
+        .querySelector('.notification')
+        .setAttribute('class', 'notification');
+    document.querySelector('.notification').setAttribute('key', 1);
+    console.log(+document.querySelector('.notification').getAttribute('key'));
+}
+
+function inputChanged(e) {
+    if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+        submitForm();
+    }
+}
