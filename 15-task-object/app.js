@@ -21,7 +21,7 @@ const toDoList = {
         }
         const lastId = [...this.sortTasksById()].at(-1)?.id ?? 0;
         data.id = lastId + 1;
-        this.tasks = [...this.tasks, { ...data }];
+        this.tasks.push(...data);
         message = `${countAdd}. Задача с id: ${data.id} успешно добавлена`;
 
         return message;
@@ -37,7 +37,7 @@ const toDoList = {
             message = `${countRemove}. Задача c ${id} не найдена`;
             return message;
         }
-        this.tasks = [...this.tasks.filter((task) => task.id !== id)];
+        this.tasks = this.tasks.filter((task) => task.id !== id);
         message = `${countRemove}. Задача с ${id} успешно удалена`;
         return message;
     },
