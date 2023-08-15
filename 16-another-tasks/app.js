@@ -28,7 +28,7 @@ const objectFunctions = {
         }
         const lastId = [...this.sortTasksById()].at(-1)?.id ?? 0;
         data.id = lastId + 1;
-        this.tasks = [...this.tasks, { ...data }];
+        this.tasks.push({ ...data });
         message = `${countAdd}. Задача с id: ${data.id} успешно добавлена`;
 
         return message;
@@ -45,7 +45,7 @@ const objectFunctions = {
             message = `${countRemove}. Задача c ${id} не найдена`;
             return message;
         }
-        this.tasks = [...this.tasks.filter((task) => task.id !== id)];
+        this.tasks = this.tasks.filter((task) => task.id !== id);
         message = `${countRemove}. Задача с ${id} успешно удалена`;
         return message;
     },
@@ -145,7 +145,7 @@ for (let i = 0; i < randomAddCount; i++) {
     }
 
     const res = i % 3 === 0 ? toDoList.addTask(body) : newTask.addTask(body);
-    console.log(i % 3 === 0 ? 'newTask' : 'oldTask', res);
+    console.log(i % 3 === 0 ? 'newTask' : 'toDoList', res);
 }
 
 //  Вызов функции создания сообщения - разделителя
@@ -184,7 +184,7 @@ for (let i = 0; i < randomUpdateCount; i++) {
         i % 3 === 0
             ? toDoList.updateTaskById(id, body)
             : newTask.updateTaskById(id, body);
-    console.log(i % 3 === 0 ? 'newTask' : 'oldTask', res);
+    console.log(i % 3 === 0 ? 'newTask' : 'toDoList', res);
 }
 
 //  Вызов функции создания сообщения - разделителя
@@ -194,8 +194,8 @@ templateMessage('УДАЛЕНИЕ', randomRemoveCount);
 for (let i = 0; i < randomRemoveCount; i++) {
     const id = getRandom(...rndId);
     const res =
-        i % 3 === 0 ? toDoList.removeTaskById(id) : newTask.removeTaskById(id);
-    console.log(i % 3 === 0 ? 'newTask' : 'oldTask', res);
+        i % 3 === 0 ? newTask.removeTaskById(id) : toDoList.removeTaskById(id);
+    console.log(i % 3 === 0 ? 'newTask' : 'toDoList', res);
 }
 //  Вызов функции создания сообщения - разделителя
 templateMessage('END');
