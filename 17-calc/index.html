@@ -5,19 +5,25 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="./styles.css" />
     </head>
     <body style="background-color: #1c1b21; text-align: center">
         <img class="logo" src="./logo.svg" alt="" />
-        <div class="panel">I love this!</div>
-        <input name="num1" class="input" />
-        <input name="num2" class="input" />
-        <div style="padding-top: 10px">
-            <button class="button" onclick="submitForm(event)">+</button>
-            <button class="button" onclick="submitForm(event)">-</button>
-            <button class="button" onclick="submitForm(event)">*</button>
-            <button class="button" onclick="submitForm(event)">/</button>
+        <form onsubmit="submitForm(event)">
+            <input type="number" autofocus name="num1" class="input" />
+            <input type="number" name="num2" class="input" />
+            <div style="padding-top: 10px">
+                <button class="button">+</button>
+                <button class="button">-</button>
+                <button class="button">*</button>
+                <button class="button">/</button>
+            </div>
+        </form>
+        <div class="panel">
+            Здесь будет результат вычислений, пожалуйста введите числа и
+            выберите действие
         </div>
+
         <div class="notification notification_hidden">Вычисление окончено!</div>
         <div class="test"></div>
         <script src="./app.js"></script>

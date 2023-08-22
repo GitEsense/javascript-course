@@ -1,51 +1,61 @@
 `use strict`;
-function submitForm(e) {
-    const numbers = [];
-    document
-        .querySelectorAll('.input')
-        .forEach((el) => numbers.push(Number(el.value)));
+const page = {
+    panel: document.querySelector('.panel'),
+    notification: document.querySelector('.notification'),
+};
 
-    const action = e.target.innerText;
-    const isError = isValid(...numbers);
-    if (isError) {
-        return (document.querySelector('.panel').innerText = isError);
+function submitForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const action = event.submitter.innerText;
+    const fields = ['num1', 'num2'];
+    const data = validateAndGetFormData(form, fields);
+    if (!data) {
+        return (page.panel.innerText = 'Не введены все числа');
     }
-
-    const result = calculate(...numbers, action);
-    document.querySelector('.panel').innerText = result;
-    document.querySelectorAll('.input').forEach((el) => (el.value = ''));
-    document
-        .querySelector('.notification')
-        .classList.toggle('notification_hidden');
+    const result = calculate(data[0], data[1], action);
+    page.panel.innerText = `${data[0]} ${action} ${data[1]} = ${result}`;
+    form.reset();
+    page.notification.classList.remove('notification_hidden');
 }
 
-function isValid(a, b) {
-    let message;
-    if (!a || !b) {
-        message = 'Не введены все числа';
-    } else if (isNaN(a) || isNaN(b)) {
-        message = 'Вводите только числа';
+function validateAndGetFormData(form, fields) {
+    const formData = new FormData(form);
+    let isValid = true;
+    const result = [];
+    for (const field of fields) {
+        const fieldValue = formData.get(field);
+        form[field].classList.remove('error');
+        if (!fieldValue) {
+            page.notification.classList.add('notification_hidden');
+            form[field].classList.add('error');
+            isValid = false;
+        }
+        result.push(Number(fieldValue));
     }
-    return message;
+
+    if (!isValid) {
+        return false;
+    }
+    return result;
 }
 
 function calculate(a, b, char) {
-    let result = 0;
     switch (char) {
-        case '+':
-            result = a + b;
-            break;
-        case '-':
-            result = a - b;
-            break;
-        case '/':
-            result = a / b;
-            break;
-        case '*':
-            result = a * b;
-            break;
-        default:
-            break;
+        case '+': {
+            return a + b;
+        }
+        case '-': {
+            return a - b;
+        }
+        case '/': {
+            if (b === 0) {
+                return 'Нельзя делить на ноль';
+            }
+            return (a / b).toFixed(2);
+        }
+        case '*': {
+            return a * b.toFixed(2);
+        }
     }
-    return result;
 }
