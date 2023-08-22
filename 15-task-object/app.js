@@ -19,9 +19,9 @@ const toDoList = {
         if (!data) {
             return message;
         }
-        const lastId = [...this.sortTasksById()].at(-1)?.id ?? 0;
+        const lastId = this.tasks.sort((a, b) => a.id - b.id).at(-1)?.id ?? 0;
         data.id = lastId + 1;
-        this.tasks.push(...data);
+        this.tasks.push(data);
         message = `${countAdd}. Задача с id: ${data.id} успешно добавлена`;
 
         return message;
@@ -68,7 +68,7 @@ const toDoList = {
         return message;
     },
     sortTasksByPriority: function (descSort = false) {
-        return [...this.tasks].sort((task1, task2) =>
+        return this.tasks.sort((task1, task2) =>
             descSort
                 ? task2.priority - task1.priority
                 : task1.priority - task2.priority
