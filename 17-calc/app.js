@@ -3,11 +3,10 @@ const page = {
     panel: document.querySelector('.panel'),
     notification: document.querySelector('.notification'),
 };
-
 function submitForm(event) {
     event.preventDefault();
-    const form = event.target;
-    const action = event.submitter.innerText;
+    const form = event.target.closest('form');
+    const action = event.target.value;
     const fields = ['num1', 'num2'];
     const data = validateAndGetFormData(form, fields);
     if (!data) {

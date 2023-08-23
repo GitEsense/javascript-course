@@ -9,14 +9,14 @@
     </head>
     <body style="background-color: #1c1b21; text-align: center">
         <img class="logo" src="./logo.svg" alt="" />
-        <form onsubmit="submitForm(event)">
+        <form onclick="submitForm(event)">
             <input type="number" autofocus name="num1" class="input" />
             <input type="number" name="num2" class="input" />
-            <div style="padding-top: 10px">
-                <button class="button">+</button>
-                <button class="button">-</button>
-                <button class="button">*</button>
-                <button class="button">/</button>
+            <div>
+                <input type="submit" class="button" value="+" />
+                <input type="submit" class="button" value="-" />
+                <input type="submit" class="button" value="*" />
+                <input type="submit" class="button" value="/" />
             </div>
         </form>
         <div class="panel">
