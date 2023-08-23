@@ -10,23 +10,23 @@
 let countAdd = 0;
 let countUpdate = 0;
 let countRemove = 0;
-
+let lastId = 0;
 const toDoList = {
     tasks: [],
-    addTask: function (data) {
+    addTask(data) {
         countAdd++;
         let message = `${countAdd}. Ошибка входящих параметров`;
         if (!data) {
             return message;
         }
-        const lastId = this.tasks.sort((a, b) => a.id - b.id).at(-1)?.id ?? 0;
-        data.id = lastId + 1;
+
+        data.id = ++lastId;
         this.tasks.push(data);
         message = `${countAdd}. Задача с id: ${data.id} успешно добавлена`;
 
         return message;
     },
-    removeTaskById: function (id) {
+    removeTaskById(id) {
         countRemove++;
         let message = 'Ошибка входящих параметров';
         if (!id) {
@@ -41,7 +41,7 @@ const toDoList = {
         message = `${countRemove}. Задача с ${id} успешно удалена`;
         return message;
     },
-    updateTaskById: function (id, data) {
+    updateTaskById(id, data) {
         countUpdate++;
         let message = `${countUpdate}. Ошибка входящих параметров`;
         if (!id) {
@@ -67,15 +67,15 @@ const toDoList = {
         )}`;
         return message;
     },
-    sortTasksByPriority: function (descSort = false) {
+    sortTasksByPriority(descSort = false) {
         return this.tasks.sort((task1, task2) =>
             descSort
                 ? task2.priority - task1.priority
                 : task1.priority - task2.priority
         );
     },
-    sortTasksById: function (descSort = false) {
-        return [...this.tasks].sort((task1, task2) =>
+    sortTasksById(descSort = false) {
+        return this.tasks.sort((task1, task2) =>
             descSort ? task2.id - task1.id : task1.id - task2.id
         );
     },
