@@ -2,35 +2,42 @@
 const page = {
     panel: document.querySelector('.panel'),
     notification: document.querySelector('.notification'),
+    inputs: {
+        num1: document.querySelector('[name="num1"]'),
+        num2: document.querySelector('[name="num2"]'),
+    },
 };
 function submitForm(event) {
-    event.preventDefault();
-    const form = event.target.closest('form');
-    const action = event.target.value;
-    const fields = ['num1', 'num2'];
-    const data = validateAndGetFormData(form, fields);
+    const action = event.target.innerText;
+    const elements = [page.inputs.num1, page.inputs.num2];
+    const data = validateAndGetInputData(elements);
     if (!data) {
         return (page.panel.innerText = 'Не введены все числа');
     }
     const result = calculate(data[0], data[1], action);
+    resetInputs(elements);
     page.panel.innerText = `${data[0]} ${action} ${data[1]} = ${result}`;
-    form.reset();
     page.notification.classList.remove('notification_hidden');
 }
 
-function validateAndGetFormData(form, fields) {
-    const formData = new FormData(form);
+function resetInputs(elements) {
+    for (const elem of elements) {
+        elem.value = '';
+    }
+}
+
+function validateAndGetInputData(elements) {
     let isValid = true;
     const result = [];
-    for (const field of fields) {
-        const fieldValue = formData.get(field);
-        form[field].classList.remove('error');
-        if (!fieldValue) {
+    for (const elem of elements) {
+        const elemValue = elem.value;
+        elem.classList.remove('error');
+        if (!elemValue) {
             page.notification.classList.add('notification_hidden');
-            form[field].classList.add('error');
+            elem.classList.add('error');
             isValid = false;
         }
-        result.push(Number(fieldValue));
+        result.push(Number(elemValue));
     }
 
     if (!isValid) {

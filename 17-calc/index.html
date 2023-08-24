@@ -9,16 +9,16 @@
     </head>
     <body style="background-color: #1c1b21; text-align: center">
         <img class="logo" src="./logo.svg" alt="" />
-        <form onclick="submitForm(event)">
+        <div>
             <input type="number" autofocus name="num1" class="input" />
             <input type="number" name="num2" class="input" />
-            <div>
-                <input type="submit" class="button" value="+" />
-                <input type="submit" class="button" value="-" />
-                <input type="submit" class="button" value="*" />
-                <input type="submit" class="button" value="/" />
+            <div class="button__list" onclick="submitForm(event)">
+                <button class="button">+</button>
+                <button class="button">-</button>
+                <button class="button">*</button>
+                <button class="button">/</button>
             </div>
-        </form>
+        </div>
         <div class="panel">
             Здесь будет результат вычислений, пожалуйста введите числа и
             выберите действие
