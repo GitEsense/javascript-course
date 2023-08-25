@@ -7,7 +7,7 @@ const page = {
         num2: document.querySelector('[name="num2"]'),
     },
 };
-function submitForm(event) {
+function onActionClick(event) {
     const action = event.target.innerText;
     const elements = [page.inputs.num1, page.inputs.num2];
     const data = validateAndGetInputData(elements);
