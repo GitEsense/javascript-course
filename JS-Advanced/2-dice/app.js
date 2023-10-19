@@ -20,17 +20,25 @@ function errorMessage(dice) {
     return null;
 }
 
+function getRandomDice(dice, fn) {
+    const error = errorMessage(dice);
+    if (error) return error;
+    const max = fn(dice);
+    return { dice, num: Math.floor(Math.random() * max + 1) };
+}
+
 function consoleRandomResult(fn) {
     //  Ручная проверка
+    console.log(`----------------- ${fn.name} ---------------\n`);
     console.log('-----------------РУЧНАЯ ПРОВЕРКА---------------\n');
-    console.log(fn('d1'));
-    console.log(fn('d2'));
-    console.log(fn('d4'));
-    console.log(fn('d7'));
-    console.log(fn('d6'));
-    console.log(fn('d9'));
-    console.log(fn('d10'));
-    console.log(fn('d12'));
+    console.log(getRandomDice('d1', fn));
+    console.log(getRandomDice('d2', fn));
+    console.log(getRandomDice('d4', fn));
+    console.log(getRandomDice('d7', fn));
+    console.log(getRandomDice('d6', fn));
+    console.log(getRandomDice('d9', fn));
+    console.log(getRandomDice('d10', fn));
+    console.log(getRandomDice('d12', fn));
 
     //  Наполнение массива через генерацию данных
     console.log('\n---НАПОЛНЕНИЕ МАССИВА ЧЕРЕЗ ГЕНЕРАЦИЮ ДАННЫХ---');
@@ -38,7 +46,7 @@ function consoleRandomResult(fn) {
     const diceRollArray = [];
 
     for (let i = 0; i < iteration; i++) {
-        const result = fn('d' + getRandom(1, 20));
+        const result = getRandomDice('d' + getRandom(1, 20), fn);
         if (result) diceRollArray.push(result);
     }
 
@@ -53,9 +61,7 @@ function consoleRandomResult(fn) {
 
     console.log(diceMap);
 }
-
-function getRandomDice(dice) {
-    let errorMessage = null;
+function getMaxPattern1(dice) {
     const allDices = [
         { dice: 'd4', max: 4 },
         { dice: 'd6', max: 6 },
@@ -65,34 +71,19 @@ function getRandomDice(dice) {
         { dice: 'd16', max: 16 },
         { dice: 'd20', max: 20 },
     ];
-    const { max } = allDices.find((find) => find.dice === dice) ?? { max: null };
-    if (!max) {
-        errorMessage = `Игральная кость ${dice} не подходит для игры. Доступные значения: [${allDices.map((d) => d.dice).join(', ')}]`;
-        return errorMessage;
-    }
-
-    return { dice, num: Math.floor(Math.random() * max + 1) };
+    return allDices.find((find) => find.dice === dice)?.max;
 }
-
-function getRandomDice2(dice) {
-    const error = errorMessage(dice);
-    if (error) return error;
-    const max = Number.parseInt(dice.replace(new RegExp('\\D+', 'g'), ''));
-    return { dice, num: Math.floor(Math.random() * max + 1) };
+function getMaxPattern2(dice) {
+    return Number.parseInt(dice.replace(new RegExp('\\D+', 'g'), ''));
 }
-
-function getRandomDice3(dice) {
-    const error = errorMessage(dice);
-    if (error) return error;
+function getMaxPattern3(dice) {
     const pattern = new RegExp('\\d+', 'g');
-    const max = Number.parseInt(dice.match(pattern));
-
-    return { dice, num: Math.floor(Math.random() * max + 1) };
+    return Number.parseInt(dice.match(pattern));
 }
 
 console.log('\n------------------VARIANT - 1------------------\n\n');
-consoleRandomResult(getRandomDice);
+consoleRandomResult(getMaxPattern1);
 console.log('\n------------------VARIANT - 2------------------\n\n');
-consoleRandomResult(getRandomDice2);
+consoleRandomResult(getMaxPattern2);
 console.log('\n------------------VARIANT - 3------------------\n\n');
-consoleRandomResult(getRandomDice3);
+consoleRandomResult(getMaxPattern3);
