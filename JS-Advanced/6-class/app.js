@@ -9,23 +9,15 @@
         -   Добавьте метод info, который выводить в консоль марку, модели и пробег
 */
 
-function getRandom(min, max) {
-  return Math.ceil(Math.random() * (max - min) + min);
-}
-
 class Car {
-  static #COUNTER = 0;
   #_brand;
   #_model;
   #_mileage;
-  #_number;
 
   constructor(brand, model, mileage) {
     this.#_brand = brand;
     this.#_model = model;
     this.#mileage = mileage;
-    Car.#COUNTER++;
-    this.#_number = Car.#COUNTER;
   }
 
   get #mileage() {
@@ -36,62 +28,39 @@ class Car {
     this.#_mileage = value;
   }
 
-  checkMileage(value) {
+  #checkMileage(value) {
     return this.#mileage === value;
   }
 
   changeMileage(value) {
-    try {
-      if (this.checkMileage(value)) {
-        throw `the values ​​are the same (current: ${
+    if (this.#checkMileage(value)) {
+      console.error(
+        `the values ​​are the same (current: ${
           this.#mileage
-        }, new: ${value}). Mileage NOT changed`;
-      }
-
-      console.log(`mileage changed from ${this.#mileage} to ${value}`);
-      this.#_mileage = value;
-      return true;
-    } catch (error) {
-      console.error("Ошибка: " + error);
+        }, new: ${value}). Mileage NOT changed`
+      );
+      return false;
     }
+
+    console.log(`mileage changed from ${this.#mileage} to ${value}`);
+    this.#_mileage = value;
+    return true;
   }
   info() {
     console.log(
-      "-".repeat(24) + this.#_number.toString().padStart(2, 0) + "-".repeat(24)
-    );
-    console.log(
       `Марка: ${this.#_brand}, Модель: ${this.#_model}, Пробег: ${
         this.#mileage
-      }\n`
+      }`
     );
   }
-  static counts() {
-    return this.#COUNTER;
-  }
 }
 
-async function generateAnswer() {
-  const carMap = [];
-  const brands = ["Audi", "BMW"];
-  const models = await fetch("./data/models.json")
-    .then((res) => res.json())
-    .then((data) => data);
+const car1 = new Car("Audi", "A6", 10000);
+car1.changeMileage(10000);
+car1.changeMileage(2500);
+car1.info();
 
-  for (let i = 0; i < getRandom(5, 15); i++) {
-    const randomBrand = getRandom(0, brands.length) - 1;
-    const brand = brands[randomBrand];
-    const modelsArray = models[brand];
-    const randomModel = getRandom(0, modelsArray.length - 1);
-    const model = modelsArray[randomModel];
-
-    carMap.push(new Car(brand, model, getRandom(100, 120)));
-  }
-  return carMap;
-}
-(async () => {
-  const result = await generateAnswer();
-  result.forEach((x) => {
-    x.info();
-    x.changeMileage(getRandom(100, 120));
-  });
-})();
+const car2 = new Car("BMW", "X5", 1500);
+car2.changeMileage(5000);
+car2.changeMileage(5000);
+car2.info();
