@@ -14,13 +14,15 @@
 */
 
 class Billing {
-    amount = 100;
-    calculateTotal() {}
+    #amount = 100;
+    calculateTotal() {
+        return this.#amount;
+    }
 }
 
 class FixBilling extends Billing {
     calculateTotal() {
-        return this.amount;
+        return super.calculateTotal();
     }
 }
 class HourBilling extends Billing {
@@ -29,7 +31,7 @@ class HourBilling extends Billing {
         this.hour = hour;
     }
     calculateTotal() {
-        return this.amount * this.hour;
+        return super.calculateTotal() * this.hour;
     }
 }
 class ItemBilling extends Billing {
@@ -38,7 +40,7 @@ class ItemBilling extends Billing {
         this.items = items;
     }
     calculateTotal() {
-        return this.amount * this.items.length;
+        return super.calculateTotal() * this.items.length;
     }
 }
 
