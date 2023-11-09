@@ -63,7 +63,11 @@ function request(url, callback, method = 'GET', body = {}) {
 
     xhr.addEventListener('load', function () {
         const json = jsonParse(this.responseText);
-        callback(json, printEffect);
+        if (typeof callback === 'function') {
+            callback(json, printEffect);
+        } else {
+            console.log(json);
+        }
     });
 }
 
