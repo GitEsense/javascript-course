@@ -1,34 +1,106 @@
-body {
-    background-color: #7fffd414;
-    min-width: 210px;
-    padding: 12px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+body {
+    background-color: #0e0e13;
+    color: #fafafa;
+
+    ::selection {
+        background: #5b28b9;
+        border-radius: 15px;
+        padding: 25px;
+    }
+}
+.header {
+    min-width: 100%;
+    background-color: #1e1f29;
+    height: 100%;
+    margin-bottom: 40px;
+}
+.header__wrapper {
+    max-width: var(--layout-width);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 40px 24px;
+}
+.content__wrapper {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(137, 43, 226, 0.85);
+    gap: 12px;
+    border-radius: 10px;
+}
+main {
+    background-color: #1e1f29;
+    padding: 48px;
+    border-radius: 10px;
+    max-width: 80%;
+    min-width: 600px;
+    margin: 0 auto;
+}
+button:hover,
+a:hover {
+    cursor: pointer;
+    background-color: #5b28b9;
+}
+button:active,
+a:active {
+    background-color: #4b1f9e;
+    box-shadow: 0 1px 2px #4b1f9e;
+}
+button,
+a {
+    background-color: #6c38cc;
+    color: #fafafa;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 120%;
+    text-align: center;
+    padding: 12px 24px;
+    /* width: 100%; */
+    border-radius: 10px;
+    border: none;
+}
+
 ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: auto;
     max-width: 600px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     justify-content: center;
     align-items: center;
     gap: 15px;
+    margin-bottom: 20px;
+    & > li {
+        height: 100%;
+    }
 }
 ul > li > a {
-    border: 1px solid rgba(137, 43, 226, 0.85);
-    background-color: rgba(137, 43, 226, 0.75);
-    &:hover {
-        background-color: rgba(137, 43, 226, 0.85);
-    }
-    &:active {
-        background-color: rgba(137, 43, 226, 0.95);
-    }
-
-    display: block;
-    padding: 10px;
-    border-radius: 8px;
-    color: aliceblue;
-    font-weight: 600;
-    font-size: 18px;
     text-decoration: none;
+}
+.actions {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.action,
+.loading {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(137, 43, 226, 0.85);
+    border-radius: 10px;
+}
+.hidden {
+    display: none;
 }
