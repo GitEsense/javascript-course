@@ -9,9 +9,18 @@
 
 function geolocalionPromise() {
     return new Promise((resolve, reject) => {
+        if (!('geolocation' in navigator)) {
+            reject(new Error('Такого API на клиенте не обнаружено'));
+        }
+        const options = {
+            enableHighAccuracy: false,
+            timeout: 5000,
+            maximumAge: 0,
+        };
         navigator.geolocation.getCurrentPosition(
             (position) => resolve(position),
             (error) => reject(new Error(`ERROR(${error.code}): ${error.message}`)),
+            options,
         );
     });
 }
