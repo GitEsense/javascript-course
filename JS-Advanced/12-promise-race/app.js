@@ -6,48 +6,105 @@
         возвращать первый успешно выполненный или отклонённый.
 */
 
-const request = async (url, options = {}) => {
+async function request(url, options = {}) {
     const response = await fetch(url, options);
     if (!response.ok) {
         const { message } = await response.json();
         throw new Error(JSON.stringify({ code: response.status, message }));
     }
     return response;
-};
+}
 
-function randomPromiseResult(user) {
-    return new Promise(async (resolve, reject) => {
-        if (!(user?.username && user?.password)) {
-            return reject(new Error("it's not user!"));
-        }
-        const { username, password } = user;
-        const response = await request('https://dummyjson.com/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                // Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                username,
-                password,
-            }),
+function sleep(ms = Math.random() * 200) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
+}
+let countToError = 0;
+async function randomPromiseResult(user) {
+    countToError++;
+    if (countToError === 6 || countToError === 8) {
+        throw new Error('count = 6 || 8');
+    }
+    if (!(user?.username && user?.password)) {
+        throw new Error("it's not user!");
+    }
+    const { username, password } = user;
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            username,
+            password,
+        }),
+    };
+    const response = await request('https://dummyjson.com/auth/login', options);
+    await sleep();
+    return await response.json();
+}
+
+async function promiseAll(array) {
+    let count = 0;
+    return new Promise((resolve, reject) => {
+        const result = [];
+        array.map((promise, index) => {
+            Promise.resolve(promise).then((value) => {
+                result[index] = value;
+                count++;
+                if (count === array.length) {
+                    resolve(result);
+                }
+            }, reject);
         });
-
-        resolve(response.json());
     });
 }
 
-async function race() {
+async function promiseAllSettled(array) {
+    return promiseAll(
+        array.map((promise) =>
+            Promise.resolve(promise).then(
+                (value) => ({ status: 'fulfilled', value }),
+                (error) => ({ status: 'rejected', reason: error }),
+            ),
+        ),
+    );
+}
+
+Promise.all;
+async function promiseRace(array) {
+    return new Promise((resolve, reject) => {
+        array.map((promise) =>
+            Promise.resolve(promise).then(
+                (value) => resolve(value),
+                (error) => reject(error),
+            ),
+        );
+    });
+}
+async function getData(length = 10) {
     try {
-        const length = 5;
         const response = await request(`https://dummyjson.com/users`);
         const { users } = await response.json();
-        const promisesArray = Array.from({ length }, (_, index) => randomPromiseResult(users[index]));
-        const result = await Promise.race(promisesArray);
-        console.log(result);
+        return Array.from({ length }, (_, index) => randomPromiseResult(users[index]));
     } catch (e) {
         console.warn(e);
     }
 }
 
-race();
+(async () => {
+    const data = await getData();
+
+    const result1 = await promiseAllSettled(data);
+    console.log(result1);
+
+    const result2 = await promiseRace(data.slice(0, 5));
+    console.log(result2);
+
+    const result3 = await promiseAll(data.slice(0, 5));
+    console.log(result3);
+})();
