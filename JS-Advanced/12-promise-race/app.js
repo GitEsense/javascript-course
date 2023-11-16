@@ -48,6 +48,7 @@ async function randomPromiseResult(user) {
     return await response.json();
 }
 
+//  Promice.all()
 async function promiseAll(array) {
     let count = 0;
     return new Promise((resolve, reject) => {
@@ -64,6 +65,7 @@ async function promiseAll(array) {
     });
 }
 
+//  Promice.allSettled()
 async function promiseAllSettled(array) {
     return promiseAll(
         array.map((promise) =>
@@ -75,7 +77,7 @@ async function promiseAllSettled(array) {
     );
 }
 
-Promise.all;
+//  Promice.race()
 async function promiseRace(array) {
     return new Promise((resolve, reject) => {
         array.map((promise) =>
@@ -86,6 +88,7 @@ async function promiseRace(array) {
         );
     });
 }
+
 async function getData(length = 10) {
     try {
         const response = await request(`https://dummyjson.com/users`);
