@@ -37,6 +37,7 @@ body {
     border: 1px solid #5b28b9;
     gap: 12px;
     border-radius: 10px;
+    margin-bottom: 40px;
 }
 main {
     background-color: #1e1f29;
@@ -88,7 +89,6 @@ ul > li > a {
 }
 .actions {
     width: 100%;
-    min-height: 100px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -135,4 +135,58 @@ pre {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(80px, 150px));
+}
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #333;
+}
+/* 
+.wrapper div {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 10px;
+    & > button {
+        background: none;
+        border: 1px solid #333;
+    }
+} */
+
+.selected {
+    background: #6c38cc;
+}
+
+.inner {
+    width: 100%;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, 40px);
+    gap: 10px;
+}
+.inner div {
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px;
+}
+input {
+    background: transparent;
+    border: 1px solid #333;
+    color: #fafafa;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 120%;
+    text-align: center;
+    padding: 12px 24px;
+    /* width: 100%; */
+    border-radius: 10px;
 }
