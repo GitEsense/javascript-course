@@ -5,6 +5,7 @@ export class Task {
         this.message = message;
     }
     run() {
+        // console.log(this.message);
         this.message.split('').forEach((char, i) => {
             setTimeout(() => {
                 this.#wrapper.innerHTML += char;
