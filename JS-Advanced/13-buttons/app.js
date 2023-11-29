@@ -16,6 +16,10 @@ const elements = {
 };
 elements.reset.addEventListener('click', (e) => {
     elements.count.innerHTML = 0;
+    [...elements.buttons.children].forEach((button) => {
+        button.innerHTML = 'Нажми меня';
+        button.classList.remove('-active-');
+    });
 });
 
 elements.buttons.addEventListener('click', (event) => {
