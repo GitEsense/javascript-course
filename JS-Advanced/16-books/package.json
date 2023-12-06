@@ -1,0 +1,27 @@
+{
+    "name": "book-app",
+    "version": "1.0.0",
+    "description": "Cool book app",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "build": "rollup -c --watch",
+        "start": "live-server --port=9055",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "books"
+    ],
+    "author": "kld_ch_a",
+    "license": "ISC",
+    "devDependencies": {
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "eslint": "^8.54.0",
+        "live-server": "^1.2.2",
+        "rollup": "^4.6.1",
+        "rollup-plugin-import-css": "^3.3.5"
+    },
+    "dependencies": {
+        "on-change": "^4.0.2"
+    }
+}
