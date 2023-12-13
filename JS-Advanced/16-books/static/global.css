@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans';
+    color: var(--black);
+    height: 100vh;
+}
+:root {
+    --black: #121212;
+    --white: #fafafa;
+}
+
+#root {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 12px;
+}
