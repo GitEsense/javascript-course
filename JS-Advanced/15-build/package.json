@@ -5,7 +5,7 @@
     "main": "bundle.js",
     "scripts": {
         "start-all": "npm ci && npm run build && npm run start",
-        "build": "rollup ./scripts/index.js --format cjs --file bundle.js && echo 'building complete!'",
+        "build": "rollup ./scripts/index.js --format cjs --file ./dist/bundle.js && echo 'building complete!'",
         "start": "live-server --port=14005 --open=/?starter=nodejs&homework=15-build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
