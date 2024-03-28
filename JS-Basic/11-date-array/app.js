@@ -47,7 +47,6 @@ function stringToArray(str) {
     if (!year || isNaN(day) || isNaN(month) || isNaN(year)) {
         return null;
     }
-    console.log([day, month, year]);
     return [day, month, year];
 }
 
