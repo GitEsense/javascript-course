@@ -5,44 +5,49 @@
     (можно: 10-02-2022 и 11/12/2023) и возвращала новый массив вида: 
     -   ['10-02-2022','12-11-2023']
 */
+const length = 30;
+const inputDates = Array.from({ length }, () => {
+    function randomNumber(min = 0, max = 35) {
+        return Math.ceil(Math.random() * (max - min)) + min;
+    }
 
-/*
-    VARIANT 1
-*/
+    const factor = Math.random() > 0.5 ? '/' : '-';
 
-const stringArray = [
-    '31-01-2022',
-    '29-02-2024',
-    '29-02',
-    '2024-12-03',
-    '29-02-2023',
-    'тест',
-    '11/12/2023',
-    '00/13/2022',
-    '41/12/2023',
-    '02/29/2023',
-    '02/29/2024',
-    'tt/11/20ts',
-    '012/011/20ts',
-];
+    const dateArray = [randomNumber(), randomNumber(), randomNumber(1900, 2050)].map((x) => x.toString().padStart(2, '0'));
+    return dateArray.join(factor);
+});
 
 function getDates(array, fn) {
-    const resultArr = [...array];
-    return resultArr
-        .map(stringToArray)
-        .filter(fn)
-        .map((array) => array.join('-'));
+    return array.map(stringToArray).filter(fn).sort(sortDatePattern).map(formatDate);
 }
 
-function stringToArray(dateString) {
-    let [day, month, year] = dateString.split('-');
-    if (!year) {
-        [month, day, year] = dateString.split('/');
+function formatDate(array) {
+    return array.map((x, i) => (i === 2 ? x.padStart('0', 4) : x.padStart('0', 2))).join('-');
+}
+
+function sortDatePattern(a, b) {
+    let day, month, year;
+
+    [day, month, year] = a;
+    const dt1 = new Date(year, month - 1, day).getTime();
+
+    [day, month, year] = b;
+    const dt2 = new Date(year, month - 1, day).getTime();
+
+    return dt1 - dt2;
+}
+
+function stringToArray(str) {
+    let day, month, year;
+    if (str.includes('/')) {
+        [month, day, year] = str.split('/');
+    } else if (str.includes('-')) {
+        [day, month, year] = str.split('-');
     }
     if (!year || isNaN(day) || isNaN(month) || isNaN(year)) {
         return null;
     }
-
+    console.log([day, month, year]);
     return [day, month, year];
 }
 
@@ -51,19 +56,19 @@ function checkCorrectDate(array) {
         return false;
     }
 
+    [day, month, year] = array.map(Number);
+
     const LONG_MONTH_ARRAY = [1, 3, 5, 7, 8, 10, 12];
 
-    const [day, month, year] = array.map(Number);
-
-    const isLeapYear = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+    const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 
     // check month
-    if (month > 12 || month < 1) {
+    if (month < 1 || month > 12 || year <= 0) {
         return false;
     }
 
     // check day
-    if (day > 31 || day < 1) {
+    if (day < 1 || day > 31) {
         return false;
     }
 
@@ -72,13 +77,12 @@ function checkCorrectDate(array) {
     }
 
     // check February for correct day and leap year
-    if (month === 2) {
-        if (day === 30 || (day === 29 && !isLeapYear)) {
-            return false;
-        }
+    if (month === 2 && day === 29 && !isLeapYear) {
+        return false;
     }
-
     return true;
 }
 
-console.log(getDates(stringArray, checkCorrectDate));
+const res = getDates(inputDates, checkCorrectDate);
+console.log(inputDates);
+console.log(res);
